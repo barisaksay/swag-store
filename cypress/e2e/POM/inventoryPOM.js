@@ -14,17 +14,25 @@ class inventory {
     .click()
     }
 
-    removeFromCart(){
-        cy.get('button.btn_secondary.btn_inventory')
-        .click()
+    removeFromCart(nth){
+        // cy.get('button.btn_secondary.btn_inventory')
+        // .click()
+
+        //improved
+        cy.get('.inventory_item')
+        .eq(nth-1)
+        .then((item)=>{
+            item.find(".btn_secondary")//.click()
+        })
+    
     
     }
 
     sortItems(){}
-    
+
     goToCart() {
         cy.get('a.shopping_cart_link').click()
-        cy.location('pathname').should('equal', '/cart.html')
+        cy.location('pathname').should('equal', '/v1/cart.html')
       }
 }
 

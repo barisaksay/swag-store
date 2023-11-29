@@ -18,7 +18,7 @@ describe('Login page tests',()=>{
         loginPage.typePassword(user.password)
         loginPage.clickLogin()
         //assertions
-        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+        cy.url().should('eq','https://www.saucedemo.com/v1/inventory.html')
         cy.get('.inventory_list').should('be.visible')
     })
 
@@ -37,7 +37,7 @@ describe('Login page tests',()=>{
         cy.get('[data-test="error"]')
             .should('be.visible')
             .should('contain.text','do not match')
-        cy.url().should('eq',"https://www.saucedemo.com/")
+        cy.url().should('eq',"https://www.saucedemo.com/v1/")
     })
 
     it('wrong credentials: correct username,wrong password',()=>{
@@ -48,7 +48,7 @@ describe('Login page tests',()=>{
         cy.get('[data-test="error"]')
             .should('be.visible')
             .should('contain.text','do not match')
-        cy.url().should('eq',"https://www.saucedemo.com/")
+        cy.url().should('eq',"https://www.saucedemo.com/v1/")
     })
 
     it('empty username field',()=>{
@@ -58,7 +58,7 @@ describe('Login page tests',()=>{
         cy.get('[data-test="error"]')
             .should('be.visible')
             .should('contain.text','Username is required')
-        cy.url().should('eq',"https://www.saucedemo.com/")
+        cy.url().should('eq',"https://www.saucedemo.com/v1/")
 
     })
 
@@ -69,7 +69,7 @@ describe('Login page tests',()=>{
         cy.get('[data-test="error"]')
             .should('be.visible')
             .should('contain.text','Password is required')
-        cy.url().should('eq',"https://www.saucedemo.com/")
+        cy.url().should('eq',"https://www.saucedemo.com/v1/")
 
 
     })
@@ -79,7 +79,7 @@ describe('Login page tests',()=>{
         loginPage.typePassword(user.password)
         loginPage.clickLogin()
         //assertions
-        cy.url().should('eq','https://www.saucedemo.com/')
+        cy.url().should('eq','https://www.saucedemo.com/v1/')
         cy.get('[data-test="error"]')
             .should('be.visible')
             .should('contain.text','locked out')

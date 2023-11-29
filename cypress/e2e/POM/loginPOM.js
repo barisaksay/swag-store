@@ -20,7 +20,7 @@ class LoginPage{
         clickLogout(){
             cy.get('.bm-burger-button > button').click()
             cy.get('#logout_sidebar_link').click()
-            cy.url().should('eq','https://www.saucedemo.com/')
+            cy.url().should('eq','https://www.saucedemo.com/v1/index.html')
         }
 }
 

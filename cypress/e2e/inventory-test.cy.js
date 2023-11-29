@@ -25,7 +25,7 @@ describe("inventory page tests",()=>{
 
     it("should remove added item from cart",()=>{
         inventoryPage.addToCart(3);
-        inventoryPage.removeFromCart()
+        inventoryPage.removeFromCart(3)
     })
     
     it("should sort items correctly",()=>{})
