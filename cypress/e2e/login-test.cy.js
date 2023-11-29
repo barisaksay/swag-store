@@ -1,7 +1,7 @@
-import LoginPage from "./POM/loginPOM";
+import loginPOM from "./POM/loginPOM";
 
 describe('Login page tests',()=>{
-    let loginPage = new LoginPage();
+    let loginPage = new loginPOM();
 
     let user ={
         username: "standard_user",

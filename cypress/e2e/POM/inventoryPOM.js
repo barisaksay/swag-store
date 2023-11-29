@@ -1,4 +1,4 @@
-class inventory {
+class inventoryPOM {
     constructor(){}
 
     addToCart(nthItem){
@@ -36,4 +36,4 @@ class inventory {
       }
 }
 
-export default inventory
+export default inventoryPOM

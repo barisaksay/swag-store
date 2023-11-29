@@ -1,4 +1,4 @@
-class LoginPage{
+class loginPOM{
     constructor() {
     }
         visit(){
@@ -24,4 +24,4 @@ class LoginPage{
         }
 }
 
-export default LoginPage
+export default loginPOM;
