@@ -1,4 +1,4 @@
-import loginPOM from "./POM/loginPOM";
+import loginPOM from "../page-objects/loginPOM";
 
 describe('Login page tests',()=>{
     let loginPage = new loginPOM();
