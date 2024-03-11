@@ -9,7 +9,7 @@ describe('Login page tests',()=>{
         LoginPage.visit("/")
     })
 
-    it.only('login successful',()=>{
+    it('login successful',()=>{
         LoginPage.typeUsername(LoginData.validUsername)
         LoginPage.typePassword(LoginData.correctPassword)
         LoginPage.clickLogin()
@@ -18,11 +18,15 @@ describe('Login page tests',()=>{
         cy.get('.inventory_list').should('be.visible')
     })
 
-    it('login-logout successful',()=>{
+    it.only('login-logout successful',()=>{
         LoginPage.typeUsername(LoginData.validUsername)
         LoginPage.typePassword(LoginData.correctPassword)
         LoginPage.clickLogin()
+        cy.url().should('eq','https://www.saucedemo.com/v1/inventory.html')
+
         LoginPage.clickLogout()
+        cy.url().should('eq','https://www.saucedemo.com/v1/index.html')
+
     })
 
     it('wrong credentials: wrong username,correct password',()=>{
