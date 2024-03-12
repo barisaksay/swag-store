@@ -1,19 +1,27 @@
 class loginPOM{
     constructor() {
     }
+
+        //locators
+        usernameFieldLocator = '[data-test="username"]'
+        passwordFieldLocator = '[data-test="password"]'
+        loginButtonLocator = '#login-button'
+
+
+        //methods
         visit(){
         cy.visit('/')
         }
         typeUsername(username){
-            cy.get('[data-test="username"]')
+            cy.get(this.usernameFieldLocator)
                 .type(username);
         }
         typePassword(password){
-            cy.get('[data-test="password"]')
+            cy.get(this.passwordFieldLocator)
                 .type(password)
         }
         clickLogin(){
-            cy.get('#login-button').click()
+            cy.get(this.loginButtonLocator).click()
     
         }
 
