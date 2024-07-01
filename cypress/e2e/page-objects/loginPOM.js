@@ -1,35 +1,42 @@
-class loginPOM{
-    constructor() {
+import LoginData from "../test-data/login-test-data";
+
+class LoginPage{
+
+    //login locators
+     usernameLocator = 'input[data-test="username"]';
+     passwordLocator = 'input[data-test="password"]';
+     loginButtonLocator = '#login-button';
+
+    //login methods
+
+    enterUsername(username){
+        cy.get(this.usernameLocator)
+            .should('be.visible')
+            .type(username)
+            return this
     }
 
-        //locators
-        usernameFieldLocator = '[data-test="username"]'
-        passwordFieldLocator = '[data-test="password"]'
-        loginButtonLocator = '#login-button'
+    enterPassword(password){
+        cy.get(this.passwordLocator)
+            .should('be.visible')
+            .type(password)
+            return this
+    }    
 
+    submitLoginFormButton(){
+        cy.get(this.loginButtonLocator)
+            .click()
+            return this
+    }
 
-        //methods
-        visit(){
-        cy.visit('/')
-        }
-        typeUsername(username){
-            cy.get(this.usernameFieldLocator)
-                .type(username);
-        }
-        typePassword(password){
-            cy.get(this.passwordFieldLocator)
-                .type(password)
-        }
-        clickLogin(){
-            cy.get(this.loginButtonLocator).click()
-    
-        }
+    logoutUser(){
 
-        clickLogout(){
-            cy.get('.bm-burger-button > button').click()
-            cy.get('#logout_sidebar_link').click()
-            cy.url().should('eq','https://www.saucedemo.com/v1/index.html')
-        }
+        cy.get('button').contains('span','Open')
+            .click()
+        cy.get('#logout_sidebar_link').contains("Logout")
+            .click()
+            return this
+    }
 }
 
-export default loginPOM;
+export default LoginPage;
