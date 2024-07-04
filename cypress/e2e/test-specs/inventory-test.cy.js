@@ -1,4 +1,4 @@
-import inventoryPOM from "./POM/inventoryPOM"
+import inventoryPage from "./POM/inventoryPage"
 describe("inventory page tests",()=>{
     let inventoryPage = new inventoryPOM()
     let user ={
