@@ -1,4 +1,4 @@
-class inventoryPOM {
+class inventoryPage {
     constructor(){}
 
     addToCart(nthItem){
