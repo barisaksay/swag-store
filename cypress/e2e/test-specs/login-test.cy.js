@@ -1,4 +1,4 @@
-import loginPOM from "../page-objects/loginPOM";
+import loginPage from "../page-objects/loginPage";
 import loginData from "../data/login-data";
 
 describe('Login page tests',()=>{
