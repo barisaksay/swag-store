@@ -32,8 +32,9 @@ class LoginPage{
 
     logoutUser(){
 
-        cy.get('button').contains('span','Open')
-            .click()
+        cy.get('div.bm-burger-button').find('button')
+        .click()
+        
         cy.get('#logout_sidebar_link').contains("Logout")
             .click()
             return this

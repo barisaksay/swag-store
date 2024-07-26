@@ -1,7 +1,7 @@
 import loginPage from "../page-objects/loginPage";
 import loginData from "../data/login-data.json";
 
-const {validUsername,correctPassword}=loginData
+const {validUsername,wrongUsername,correctPassword,wrongPassword,lockedoutUser}=loginData
 
 describe('Login page tests',()=>{
     let LoginPage = new loginPage();
@@ -10,7 +10,7 @@ describe('Login page tests',()=>{
         cy.visit("/")
     })
 
-    it.only('login successful',()=>{
+    it('login successful',()=>{
         LoginPage.enterUsername(validUsername)
         .enterPassword(correctPassword)
         .submitLoginFormButton()
@@ -19,21 +19,21 @@ describe('Login page tests',()=>{
         cy.get('.inventory_list').should('be.visible')
     })
 
-    it('login-logout successful',()=>{
-        LoginPage.typeUsername(LoginData.validUsername)
-                  .typePassword(LoginData.correctPassword)
-                  .clickLogin()
+    it.only('login-logout successful',()=>{
+        LoginPage.enterUsername(validUsername)
+                  .enterPassword(correctPassword)
+                  .submitLoginFormButton()
         cy.url().should('eq','https://www.saucedemo.com/v1/inventory.html')
 
-        LoginPage.clickLogout()
+        LoginPage.logoutUser()
         cy.url().should('eq','https://www.saucedemo.com/v1/index.html')
 
     })
 
     it('wrong credentials: wrong username,correct password',()=>{
-        LoginPage.typeUsername(LoginData.wrongUsername)
-        .typePassword(LoginData.correctPassword)
-        .clickLogin()
+        LoginPage.enterUsername(wrongUsername)
+        .enterPassword(correctPassword)
+        .submitLoginFormButton()
         //assertions
         cy.get('[data-test="error"]')
             .should('be.visible')
@@ -42,9 +42,9 @@ describe('Login page tests',()=>{
     })
 
     it('wrong credentials: correct username,wrong password',()=>{
-        LoginPage.typeUsername(LoginData.validUsername)
-        .typePassword(LoginData.wrongPassword)
-        .clickLogin()
+        LoginPage.enterUsername(validUsername)
+        .enterPassword(wrongPassword)
+        .submitLoginFormButton()
         //assertions
         cy.get('[data-test="error"]')
             .should('be.visible')
@@ -53,8 +53,8 @@ describe('Login page tests',()=>{
     })
 
     it('empty username field',()=>{
-        LoginPage.typePassword(LoginData.correctPassword)
-        .clickLogin()
+        LoginPage.enterPassword(correctPassword)
+        .submitLoginFormButton()
             //assertion
         cy.get('[data-test="error"]')
             .should('be.visible')
@@ -64,8 +64,8 @@ describe('Login page tests',()=>{
     })
 
     it('empty password field',()=>{
-        LoginPage.typeUsername(LoginData.validUsername)
-        .clickLogin()
+        LoginPage.enterUsername(validUsername)
+        .submitLoginFormButton()
         //assertions
         cy.get('[data-test="error"]')
             .should('be.visible')
@@ -76,9 +76,9 @@ describe('Login page tests',()=>{
     })
 
     it('locked out user - unsuccessful login',()=>{
-        LoginPage.typeUsername(LoginData.lockedoutUser)
-        .typePassword(LoginData.correctPassword)
-        .clickLogin()
+        LoginPage.enterUsername(lockedoutUser)
+        .enterPassword(correctPassword)
+        .submitLoginFormButton()
         //assertions
         cy.url().should('eq','https://www.saucedemo.com/v1/')
         cy.get('[data-test="error"]')
