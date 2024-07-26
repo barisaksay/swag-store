@@ -1,4 +1,5 @@
-import LoginData from "../test-data/login-test-data";
+
+
 
 class LoginPage{
 
@@ -13,7 +14,7 @@ class LoginPage{
         cy.get(this.usernameLocator)
             .should('be.visible')
             .type(username)
-            return this
+            return this;
     }
 
     enterPassword(password){

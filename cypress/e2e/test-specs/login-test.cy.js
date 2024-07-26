@@ -1,18 +1,19 @@
 import loginPage from "../page-objects/loginPage";
-import loginData from "../data/login-data";
+import loginData from "../data/login-data.json";
+
+const {validUsername,correctPassword}=loginData
 
 describe('Login page tests',()=>{
-    let LoginPage = new loginPOM();
-    let LoginData = new loginData();
+    let LoginPage = new loginPage();
 
     beforeEach(()=>{
-        LoginPage.visit("/")
+        cy.visit("/")
     })
 
-    it('login successful',()=>{
-        LoginPage.typeUsername(LoginData.validUsername)
-        .typePassword(LoginData.correctPassword)
-        .clickLogin()
+    it.only('login successful',()=>{
+        LoginPage.enterUsername(validUsername)
+        .enterPassword(correctPassword)
+        .submitLoginFormButton()
         //assertions
         cy.url().should('eq','https://www.saucedemo.com/v1/inventory.html')
         cy.get('.inventory_list').should('be.visible')
