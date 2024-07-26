@@ -1,6 +1,4 @@
 
-
-
 class LoginPage{
 
     //login locators

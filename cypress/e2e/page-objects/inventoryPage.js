@@ -1,32 +1,38 @@
 class inventoryPage {
-    constructor(){}
+
+    //locators
+    inventoryItem='.inventory_item';
+    itemName ='.inventory_item_name';
+    addToCartButton="button.btn_primary.btn_inventory";
+    removeButton=".btn_secondary";
+    goToCartButton="a.shopping_cart_link";
+    cartURL="/v1/cart.html";
+    
 
     addToCart(nthItem){
     // stores the item name in the alias "itemName", it can be used in test separately
 
-        //solution: below code selects the nth item from the item list,
-        //reads its name via invoke('text') and aliases it, so it can be used outside
-        //the POM method, ie in the test itself. For ex: see the --add to cart-- test.
-    cy.get('.inventory_item_name')
+        /*solution: below code selects the nth item from the item list,
+        reads its name via invoke('text') and aliases it, so it can be used outside
+        the POM method, ie in the test itself. For ex: see the --add to cart-- test.*/
+
+    cy.get(this.itemName)
     .eq(nthItem - 1)
     .invoke('text')
     .as('itemName')
 
     //clicks on add button
-    cy.get('button.btn_primary.btn_inventory')
+    cy.get(this.addToCartButton)
     .eq(nthItem - 1)
     .click()
+    return this;
     }
 
     removeFromCart(nth){
-        // cy.get('button.btn_secondary.btn_inventory')
-        // .click()
-
-        //improved
-        cy.get('.inventory_item')
+        cy.get(this.inventoryItem)
         .eq(nth-1)
         .then((item)=>{
-            item.find(".btn_secondary")//.click()
+            item.find(this.removeButton).click()
         })
     
     
@@ -35,9 +41,9 @@ class inventoryPage {
     sortItems(){}
 
     goToCart() {
-        cy.get('a.shopping_cart_link').click()
-        cy.location('pathname').should('equal', '/v1/cart.html')
+        cy.get(this.goToCartButton).click()
+        cy.location('pathname').should('equal', this.cartURL)
       }
 }
 
-export default inventoryPOM
+export default inventoryPage;
