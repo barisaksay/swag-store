@@ -34,7 +34,7 @@ class inventoryPage {
         .then((item)=>{
             item.find(this.removeButton).click()
         })
-    
+        return this;
     
     }
 
@@ -43,6 +43,7 @@ class inventoryPage {
     goToCart() {
         cy.get(this.goToCartButton).click()
         cy.location('pathname').should('equal', this.cartURL)
+        return this;
       }
 }
 

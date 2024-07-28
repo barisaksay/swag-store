@@ -1,32 +1,34 @@
-import cartPOM from "./POM/cartPOM";
+import cartPage from "../page-objects/cartPage";
+import inventoryPage from "../page-objects/inventoryPage";
+import loginData from "../data/login-data.json";
 
-import inventoryPOM from "./POM/inventoryPOM";
+const {validUsername,correctPassword}=loginData
 
-describe('Cart Page functionalities', function () {
-    let validUsername = 'standard_user'
-    let validPassword = 'secret_sauce'
-    let cartPage = new cartPOM();
-    let inventoryPage = new inventoryPOM();
+
+describe('Cart Page tests', function () {
+   
+    let CartPage = new cartPage();
+    let InventoryPage = new inventoryPage()
     beforeEach(()=>{
-        cy.login(validUsername,validPassword)
+        cy.login(validUsername,correctPassword)
     })
 
     it('go back to inventory page',()=>{
-        inventoryPage.goToCart()
-        cartPage.continueShoppingButton()
+        InventoryPage.goToCart()
+        CartPage.clickContinueShoppingButton()
     })
 
     it('continues to checkout',()=>{
-        inventoryPage.goToCart()
-        cartPage.goToCheckoutButton()
+        InventoryPage.goToCart()
+        CartPage.clickCheckoutButton()
     })
 
     it('correct item is shown in the cart',()=>{
-        inventoryPage.addToCart(1)
+        InventoryPage.addToCart(1)
         cy.get('@itemName')
             .should('be.a','string')
             .then((productName)=>{
-                inventoryPage.goToCart()
+                InventoryPage.goToCart()
                 cy.contains('.inventory_item_name',productName)
             })
 
