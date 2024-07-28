@@ -7,6 +7,8 @@ class inventoryPage {
     removeButton=".btn_secondary";
     goToCartButton="a.shopping_cart_link";
     cartURL="/v1/cart.html";
+
+    
     
 
     addToCart(nthItem){
@@ -38,7 +40,9 @@ class inventoryPage {
     
     }
 
-    sortItems(){}
+    sortItems(index){
+        cy.get(".product_sort_container").select(index)
+    }
 
     goToCart() {
         cy.get(this.goToCartButton).click()

@@ -27,7 +27,10 @@ let InventoryPage = new inventoryPage()
         InventoryPage.removeFromCart(3)
     })
     
-    it("should sort items correctly",()=>{})
+    it.only("should sort items",()=>{
+        InventoryPage.sortItems(2)
+
+    })
 
   
 })
