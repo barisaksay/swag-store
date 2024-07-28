@@ -41,7 +41,46 @@ class inventoryPage {
     }
 
     sortItems(index){
-        cy.get(".product_sort_container").select(index)
+        //conditional statements for sorting
+        //if sorting price Low to High
+        if (index == 2) {
+          cy.get(".product_sort_container").select(index);
+
+          let prices = [];
+          cy.get(".inventory_item_price")
+            .each((item) => {
+              let priceValue = item.text().replace("$", "");
+              let priceInt = parseFloat(priceValue);
+              cy.log(priceInt);
+              prices.push(priceInt);
+            })
+            .then(() => {
+              cy.log(prices);
+              if (prices[0] > prices[1]) {
+                throw new Error("Sorting is not working as expected");
+              }
+            });
+            //if sorting High to Low
+        } else if(index==3){
+            cy.get(".product_sort_container").select(index);
+
+          let prices = [];
+          cy.get(".inventory_item_price")
+            .each((item) => {
+              let priceValue = item.text().replace("$", "");
+              let priceInt = parseFloat(priceValue);
+              cy.log(priceInt);
+              prices.push(priceInt);
+            })
+            .then(() => {
+              cy.log(prices);
+              
+              if (prices[0] < prices[1]) {
+                throw new Error("Sorting is not working as expected");
+              }
+            });
+        }
+        
     }
 
     goToCart() {

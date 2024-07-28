@@ -28,8 +28,8 @@ let InventoryPage = new inventoryPage()
     })
     
     it.only("should sort items",()=>{
-        InventoryPage.sortItems(2)
-
+        InventoryPage.sortItems(3)
+        
     })
 
   
