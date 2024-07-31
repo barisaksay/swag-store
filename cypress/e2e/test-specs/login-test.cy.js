@@ -1,7 +1,8 @@
 import loginPage from "../page-objects/loginPage";
-import loginData from "../data/login-data.json";
+import login from '../../fixtures/login-data.json';
 
-const {validUsername,wrongUsername,correctPassword,wrongPassword,lockedoutUser}=loginData
+const {validUsername,wrongUsername,correctPassword,wrongPassword,lockedoutUser}=login
+
 
 describe('Login page tests',()=>{
     let LoginPage = new loginPage();
