@@ -9,8 +9,8 @@ describe('Login page tests',()=>{
     beforeEach(()=>{
         cy.visit("/")
     })
-
-    it('login successful',()=>{
+ 
+    it('login successful',{tags:'@regression'},()=>{
         LoginPage.enterUsername(validUsername)
         .enterPassword(correctPassword)
         .submitLoginFormButton()
@@ -19,7 +19,7 @@ describe('Login page tests',()=>{
         cy.get('.inventory_list').should('be.visible')
     })
 
-    it.only('login-logout successful',()=>{
+    it('login-logout successful',()=>{
         LoginPage.enterUsername(validUsername)
                   .enterPassword(correctPassword)
                   .submitLoginFormButton()
