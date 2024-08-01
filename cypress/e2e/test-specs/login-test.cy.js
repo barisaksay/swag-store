@@ -20,7 +20,7 @@ describe('Login page tests',()=>{
         cy.get('.inventory_list').should('be.visible')
     })
 
-    it('login-logout successful',()=>{
+    it('login-logout successful',{tags:'@regression'},()=>{
         LoginPage.enterUsername(validUsername)
                   .enterPassword(correctPassword)
                   .submitLoginFormButton()
@@ -31,7 +31,7 @@ describe('Login page tests',()=>{
 
     })
 
-    it('wrong credentials: wrong username,correct password',()=>{
+    it('wrong credentials: wrong username,correct password',{tags:'@regression'},()=>{
         LoginPage.enterUsername(wrongUsername)
         .enterPassword(correctPassword)
         .submitLoginFormButton()

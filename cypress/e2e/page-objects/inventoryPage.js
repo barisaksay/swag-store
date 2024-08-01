@@ -3,6 +3,8 @@ class inventoryPage {
     //locators
     inventoryItem='.inventory_item';
     itemName ='.inventory_item_name';
+    itemPrice='.inventory_item_price';
+    itemPriceDetailPage=".inventory_details_price"
     addToCartButton="button.btn_primary.btn_inventory";
     removeButton=".btn_secondary";
     goToCartButton="a.shopping_cart_link";
@@ -88,6 +90,20 @@ class inventoryPage {
         cy.location('pathname').should('equal', this.cartURL)
         return this;
       }
+
+    goToItemDetails(nthItem){
+      cy.get(this.itemPrice)
+      .eq(nthItem-1).then((price)=>{
+        let itemPriceText=price.text();
+        cy.log(itemPriceText)
+        cy.get(this.itemName)
+        .eq(nthItem - 1)
+        .click()
+        cy.get(this.itemPriceDetailPage).should("have.text",itemPriceText)
+      })
+      
+      
+    }
 }
 
 export default inventoryPage;

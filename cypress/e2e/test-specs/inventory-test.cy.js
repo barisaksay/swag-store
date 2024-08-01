@@ -1,6 +1,7 @@
 import inventoryPage from "../page-objects/inventoryPage"
-import loginData from "../data/login-data.json";
-const {validUsername,correctPassword}=loginData
+import login from '../../fixtures/login-data.json';
+
+const {validUsername,correctPassword}=login
 
 
 describe("inventory page tests",()=>{
@@ -27,9 +28,13 @@ let InventoryPage = new inventoryPage()
         InventoryPage.removeFromCart(3)
     })
     
-    it.only("should sort items",()=>{
+    it("should sort items",()=>{
         InventoryPage.sortItems(3)
         
+    })
+
+    it("should open item details",()=>{
+        InventoryPage.goToItemDetails(3)
     })
 
   
