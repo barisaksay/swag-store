@@ -7,6 +7,7 @@ class inventoryPage {
     itemPriceDetailPage=".inventory_details_price"
     addToCartButton="button.btn_primary.btn_inventory";
     removeButton=".btn_secondary";
+    backToInventoryButton=".inventory_details_back_button"
     goToCartButton="a.shopping_cart_link";
     cartURL="/v1/cart.html";
 
@@ -93,16 +94,23 @@ class inventoryPage {
 
     goToItemDetails(nthItem){
       cy.get(this.itemPrice)
-      .eq(nthItem-1).then((price)=>{
+      .eq(nthItem-1).as('item-price-inventory').then((price)=>{
         let itemPriceText=price.text();
         cy.log(itemPriceText)
+        cy.wrap(itemPriceText)
         cy.get(this.itemName)
         .eq(nthItem - 1)
         .click()
         cy.get(this.itemPriceDetailPage).should("have.text",itemPriceText)
       })
       
-      
+      return this;
+    }
+
+    goBackInventoryPage(){
+      cy.get(this.backToInventoryButton)
+        .click({force:true})
+        return this;
     }
 }
 

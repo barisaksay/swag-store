@@ -33,8 +33,13 @@ let InventoryPage = new inventoryPage()
         
     })
 
-    it("should open item details",()=>{
+    it.only("should go back to inventory page from detail page",()=>{
         InventoryPage.goToItemDetails(3)
+        .goBackInventoryPage()
+
+
+    
+        
     })
 
   
