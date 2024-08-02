@@ -33,13 +33,16 @@ let InventoryPage = new inventoryPage()
         
     })
 
-    it.only("should go back to inventory page from detail page",()=>{
+    it("should go back to inventory page from detail page",()=>{
         InventoryPage.goToItemDetails(3)
         .goBackInventoryPage()
+    })
 
-
-    
+    it.only("test",()=>{
+        cy.get(".inventory_item").eq(0).then((item)=>{
+        cy.wrap(item).find(".inventory_item_name").invoke("text");
         
+        })
     })
 
   
