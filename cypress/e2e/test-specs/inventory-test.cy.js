@@ -36,14 +36,18 @@ let InventoryPage = new inventoryPage()
     it("should go back to inventory page from detail page",()=>{
         InventoryPage.goToItemDetails(3)
         .goBackInventoryPage()
+         cy.location('pathname').should('eq',InventoryPage.inventoryURL)
+
+
     })
 
-    it.only("test",()=>{
-        cy.get(".inventory_item").eq(0).then((item)=>{
-        cy.wrap(item).find(".inventory_item_name").invoke("text");
+
+    // it.only("test",()=>{
+    //     cy.get(".inventory_item").eq(0).then((item)=>{
+    //     cy.wrap(item).find(".inventory_item_name").invoke("text");
         
-        })
-    })
+    //     })
+    // })
 
   
 })

@@ -10,6 +10,7 @@ class inventoryPage {
     backToInventoryButton=".inventory_details_back_button"
     goToCartButton="a.shopping_cart_link";
     cartURL="/v1/cart.html";
+    inventoryURL="/v1/inventory.html";
 
     
     

@@ -6,7 +6,9 @@ class Checkout1Page{
     postcodeField="input[data-test='postalCode']";
     continueButton="input[class='btn_primary cart_button']";
     cancelButton="a[class='cart_cancel_link btn_secondary']";
-    errorMessageCheckout1="h3[data-test='error']";
+    errorFirstNameMissingText="Error: First Name is required";
+    errorLastNameMissingText="Error: Last Name is required";
+    errorPostCodeMissingText="Error: Postal Code is required";
 
 
     //helpers
