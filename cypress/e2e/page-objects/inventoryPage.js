@@ -83,7 +83,42 @@ class inventoryPage {
                 throw new Error("Sorting is not working as expected");
               }
             });
+            //sorting Z-A
+        } else if(index==1){
+          cy.get(".product_sort_container").select(index);
+
+          let names=[];
+          cy.get(".inventory_item_name")
+          .each((item)=>{
+            let nameText = item.text()
+            cy.log(nameText)
+            names.push(nameText)})
+
+            .then(()=>{
+              cy.log(names)
+              if(names[0]<names[1]){
+                throw new Error("Sorting is not working as expected");
+              }
+            })
+        } else if(index===0){
+          cy.get(".product_sort_container").select(index);
+
+          let names=[];
+          cy.get(".inventory_item_name")
+          .each((item)=>{
+            let nameText = item.text()
+            cy.log(nameText)
+            names.push(nameText)})
+
+            .then(()=>{
+              cy.log(names)
+              if(names[0]>names[1]){
+                throw new Error("Sorting is not working as expected");
+              }
+            })
+
         }
+        
         
     }
 

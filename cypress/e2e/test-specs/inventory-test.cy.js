@@ -28,10 +28,27 @@ let InventoryPage = new inventoryPage()
         InventoryPage.removeFromCart(3)
     })
     
-    it("should sort items",()=>{
+    it("should sort items High to Low",()=>{
         InventoryPage.sortItems(3)
         
     })
+
+    it("should sort items Low to High",()=>{
+        InventoryPage.sortItems(2)
+        
+    })
+
+    it("should sort items A-Z",()=>{
+        InventoryPage.sortItems(1)
+        
+    })
+
+    it("should sort items Z-A",()=>{
+        InventoryPage.sortItems(0)
+        
+    })
+
+
 
     it("should go back to inventory page from detail page",()=>{
         InventoryPage.goToItemDetails(3)
