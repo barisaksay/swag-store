@@ -1,8 +1,5 @@
 import inventoryPage from "../page-objects/inventoryPage"
 import login from '../../fixtures/login-data.json';
-
-const inventoryItems=['Sauce Labs Backpack', 'Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt', 'Sauce Labs Fleece Jacket', 'Sauce Labs Onesie', 'Test.allTheThings() T-Shirt (Red)']
-
 const {validUsername,correctPassword}=login
 
 
