@@ -18,15 +18,18 @@ describe('checkout step 1 tests', () => {
         cy.login(validUsername,correctPassword)
     });
 
-    it("should complete checkout successfully",()=>{
+    it("should complete checkout successfully-correct item is shown at checkout",()=>{
         InventoryPage.addToCart(0)
-                    .goToCart()
-        CartPage.clickCheckoutButton()
-        Checkout1Page.typeFirstName(firstname)
-                     .typeLastName(lastname)
-                     .typePostcode(postalcode)
-                     .clickContinueButton()
-
+        cy.get('@itemName').then((itemName)=>{
+            InventoryPage.goToCart()
+            CartPage.clickCheckoutButton()
+            Checkout1Page.typeFirstName(firstname)
+                         .typeLastName(lastname)
+                         .typePostcode(postalcode)
+                         .clickContinueButton()
+            cy.get(".inventory_item_name").should("have.text",itemName)
+            
+        })
     })
 
 
