@@ -1,4 +1,4 @@
-class Checkout1Page{
+class checkout1Page{
     //locators
 
     firstNameField="input[data-test='firstName']";
@@ -24,7 +24,7 @@ class Checkout1Page{
     }
 
     typePostcode(postcode){
-        cy.get(this.lastNameField).focus().type(postcode)
+        cy.get(this.postcodeField).focus().type(postcode)
         return this;
     }
 
@@ -34,3 +34,5 @@ class Checkout1Page{
     }
 
 }
+
+export default checkout1Page;
