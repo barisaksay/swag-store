@@ -12,7 +12,7 @@ let InventoryPage = new inventoryPage()
     })
 
 
-    it("should add an item to cart",()=>{
+    it("should add an item to cart",{tags:'@regression'},()=>{
         InventoryPage.addToCart(3)
         cy.get('@itemName')
         .should('be.a', 'string')
@@ -28,7 +28,7 @@ let InventoryPage = new inventoryPage()
         InventoryPage.removeFromCart(3)
     })
     
-    it("should sort items High to Low",()=>{
+    it("should sort items High to Low",{tags:'@regression'},()=>{
         InventoryPage.sortItems(3)
         
     })
@@ -48,8 +48,6 @@ let InventoryPage = new inventoryPage()
         
     })
 
-
-
     it("should go back to inventory page from detail page",()=>{
         InventoryPage.goToItemDetails(3)
         .goBackInventoryPage()
@@ -57,7 +55,6 @@ let InventoryPage = new inventoryPage()
 
 
     })
-
 
     // it.only("test",()=>{
     //     cy.get(".inventory_item").eq(0).then((item)=>{

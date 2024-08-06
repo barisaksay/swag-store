@@ -1,4 +1,5 @@
 import loginPage from "../page-objects/loginPage";
+import inventoryPage from "../page-objects/inventoryPage";
 import login from '../../fixtures/login-data.json';
 
 const {validUsername,wrongUsername,correctPassword,wrongPassword,lockedoutUser}=login
@@ -6,6 +7,7 @@ const {validUsername,wrongUsername,correctPassword,wrongPassword,lockedoutUser}=
 
 describe('Login page tests',()=>{
     let LoginPage = new loginPage();
+    let InventoryPage= new inventoryPage()
 
     beforeEach(()=>{
         cy.visit("/")
@@ -15,19 +17,19 @@ describe('Login page tests',()=>{
         LoginPage.enterUsername(validUsername)
         .enterPassword(correctPassword)
         .submitLoginFormButton()
-        //assertions
-        cy.url().should('eq','https://www.saucedemo.com/v1/inventory.html')
-        cy.get('.inventory_list').should('be.visible')
+
+        cy.location('pathname').should('eq',LoginPage.loginRedirectURL)
+        cy.get(InventoryPage.inventoryList).should('be.visible')
     })
 
     it('login-logout successful',{tags:'@regression'},()=>{
         LoginPage.enterUsername(validUsername)
                   .enterPassword(correctPassword)
                   .submitLoginFormButton()
-        cy.url().should('eq','https://www.saucedemo.com/v1/inventory.html')
+                  cy.location('pathname').should('eq',LoginPage.loginRedirectURL)
 
         LoginPage.logoutUser()
-        cy.url().should('eq','https://www.saucedemo.com/v1/index.html')
+        cy.location('pathname').should('eq',LoginPage.loginURL)
 
     })
 
@@ -36,9 +38,9 @@ describe('Login page tests',()=>{
         .enterPassword(correctPassword)
         .submitLoginFormButton()
         //assertions
-        cy.get('[data-test="error"]')
+        cy.get(LoginPage.errorLocator)
             .should('be.visible')
-            .should('contain.text','do not match')
+            .should('contain.text',LoginPage.errorText)
         cy.url().should('eq',"https://www.saucedemo.com/v1/")
     })
 
@@ -47,9 +49,9 @@ describe('Login page tests',()=>{
         .enterPassword(wrongPassword)
         .submitLoginFormButton()
         //assertions
-        cy.get('[data-test="error"]')
+        cy.get(LoginPage.errorLocator)
             .should('be.visible')
-            .should('contain.text','do not match')
+            .should('contain.text',LoginPage.errorText)
         cy.url().should('eq',"https://www.saucedemo.com/v1/")
     })
 
@@ -57,9 +59,9 @@ describe('Login page tests',()=>{
         LoginPage.enterPassword(correctPassword)
         .submitLoginFormButton()
             //assertion
-        cy.get('[data-test="error"]')
+        cy.get(LoginPage.errorLocator)
             .should('be.visible')
-            .should('contain.text','Username is required')
+            .should('contain.text',LoginPage.missingFieldText)
         cy.url().should('eq',"https://www.saucedemo.com/v1/")
 
     })
@@ -68,9 +70,9 @@ describe('Login page tests',()=>{
         LoginPage.enterUsername(validUsername)
         .submitLoginFormButton()
         //assertions
-        cy.get('[data-test="error"]')
+        cy.get(LoginPage.errorLocator)
             .should('be.visible')
-            .should('contain.text','Password is required')
+            .should('contain.text',LoginPage.missingFieldText)
         cy.url().should('eq',"https://www.saucedemo.com/v1/")
 
 
@@ -82,9 +84,9 @@ describe('Login page tests',()=>{
         .submitLoginFormButton()
         //assertions
         cy.url().should('eq','https://www.saucedemo.com/v1/')
-        cy.get('[data-test="error"]')
+        cy.get(LoginPage.errorLocator)
             .should('be.visible')
-            .should('contain.text','locked out')
+            .should('contain.text',LoginPage.lockedOutErrorText)
     })
 
 })

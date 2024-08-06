@@ -1,31 +1,34 @@
 
 class LoginPage{
 
-    //login locators
-     usernameLocator = 'input[data-test="username"]';
-     passwordLocator = 'input[data-test="password"]';
-     loginButtonLocator = '#login-button';
-
-    //login methods
+     usernameField = 'input[data-test="username"]';
+     passwordField = 'input[data-test="password"]';
+     loginButton = '#login-button';
+     loginURL="/v1/index.html"
+     loginRedirectURL="/v1/inventory.html";
+     errorLocator='[data-test="error"]';
+     errorText='do not match';
+     missingFieldText='is required';
+     lockedOutErrorText='locked out';
 
     enterUsername(username){
-        cy.get(this.usernameLocator)
+        cy.get(this.usernameField)
             .should('be.visible')
             .type(username)
             return this;
     }
 
     enterPassword(password){
-        cy.get(this.passwordLocator)
+        cy.get(this.passwordField)
             .should('be.visible')
             .type(password)
-            return this
+            return this;
     }    
 
     submitLoginFormButton(){
-        cy.get(this.loginButtonLocator)
+        cy.get(this.loginButton)
             .click()
-            return this
+            return this;
     }
 
     logoutUser(){
@@ -35,7 +38,7 @@ class LoginPage{
         
         cy.get('#logout_sidebar_link').contains("Logout")
             .click()
-            return this
+            return this;
     }
 }
 
