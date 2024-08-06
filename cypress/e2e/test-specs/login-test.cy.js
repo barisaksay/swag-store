@@ -37,7 +37,7 @@ describe('Login page tests',()=>{
         LoginPage.enterUsername(wrongUsername)
         .enterPassword(correctPassword)
         .submitLoginFormButton()
-        //assertions
+        
         cy.get(LoginPage.errorLocator)
             .should('be.visible')
             .should('contain.text',LoginPage.errorText)
@@ -48,7 +48,7 @@ describe('Login page tests',()=>{
         LoginPage.enterUsername(validUsername)
         .enterPassword(wrongPassword)
         .submitLoginFormButton()
-        //assertions
+        
         cy.get(LoginPage.errorLocator)
             .should('be.visible')
             .should('contain.text',LoginPage.errorText)
@@ -58,7 +58,7 @@ describe('Login page tests',()=>{
     it('empty username field',()=>{
         LoginPage.enterPassword(correctPassword)
         .submitLoginFormButton()
-            //assertion
+            
         cy.get(LoginPage.errorLocator)
             .should('be.visible')
             .should('contain.text',LoginPage.missingFieldText)
@@ -69,7 +69,7 @@ describe('Login page tests',()=>{
     it('empty password field',()=>{
         LoginPage.enterUsername(validUsername)
         .submitLoginFormButton()
-        //assertions
+        
         cy.get(LoginPage.errorLocator)
             .should('be.visible')
             .should('contain.text',LoginPage.missingFieldText)
@@ -82,7 +82,7 @@ describe('Login page tests',()=>{
         LoginPage.enterUsername(lockedoutUser)
         .enterPassword(correctPassword)
         .submitLoginFormButton()
-        //assertions
+        
         cy.url().should('eq','https://www.saucedemo.com/v1/')
         cy.get(LoginPage.errorLocator)
             .should('be.visible')

@@ -1,6 +1,8 @@
 import inventoryPage from "../page-objects/inventoryPage"
 import login from '../../fixtures/login-data.json';
 
+const inventoryItems=['Sauce Labs Backpack', 'Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt', 'Sauce Labs Fleece Jacket', 'Sauce Labs Onesie', 'Test.allTheThings() T-Shirt (Red)']
+
 const {validUsername,correctPassword}=login
 
 
@@ -52,16 +54,17 @@ let InventoryPage = new inventoryPage()
         InventoryPage.goToItemDetails(3)
         .goBackInventoryPage()
          cy.location('pathname').should('eq',InventoryPage.inventoryURL)
-
-
     })
 
-    // it.only("test",()=>{
-    //     cy.get(".inventory_item").eq(0).then((item)=>{
-    //     cy.wrap(item).find(".inventory_item_name").invoke("text");
-        
-    //     })
-    // })
-
-  
+    it("iterates over all items and push names to array", () => {
+        let itemNamesArray = [];
+        cy.get(".inventory_item").each((item) => {
+            cy.wrap(item).find(".inventory_item_name").then((item) => {
+                let itemName = item.text();
+                itemNamesArray.push(itemName);
+            });
+        }).then(() => {
+            cy.log(itemNamesArray);
+        });
+    });
 })
