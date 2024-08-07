@@ -32,7 +32,7 @@ describe('checkout step 1 tests', () => {
         })
     })
     //re-run
-    it("should not complete without username",()=>{
+    it("should not complete without firstname",()=>{
         InventoryPage.addToCart(0)
             .goToCart()
         CartPage.clickCheckoutButton()
@@ -42,6 +42,20 @@ describe('checkout step 1 tests', () => {
         cy.get(Checkout1Page.errorElementLocator)
             .should("be.visible")
             .should("have.text",Checkout1Page.errorFirstNameMissingText)
+        
+    })
+
+      //re-run
+    it("should not complete without lastname",()=>{
+        InventoryPage.addToCart(0)
+            .goToCart()
+        CartPage.clickCheckoutButton()
+        Checkout1Page.typeFirstName(firstname)
+                         .typePostcode(postalcode)
+                         .clickContinueButton()
+        cy.get(Checkout1Page.errorElementLocator)
+            .should("be.visible")
+            .should("have.text",Checkout1Page.errorLastNameMissingText)
         
     })
  })
