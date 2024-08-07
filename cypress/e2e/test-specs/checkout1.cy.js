@@ -58,4 +58,16 @@ describe('checkout step 1 tests', () => {
             .should("have.text",Checkout1Page.errorLastNameMissingText)
         
     })
+         //re-run
+     it("should not complete without postcode",()=>{
+        InventoryPage.addToCart(0)
+            .goToCart()
+        CartPage.clickCheckoutButton()
+        Checkout1Page.typeFirstName(firstname)
+                         .typeLastName(lastname)   
+                         .clickContinueButton()
+        cy.get(Checkout1Page.errorElementLocator)
+            .should("be.visible")
+            .should("have.text",Checkout1Page.errorPostCodeMissingText)
+    })
  })
