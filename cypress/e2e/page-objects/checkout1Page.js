@@ -9,6 +9,7 @@ class checkout1Page{
     errorFirstNameMissingText="Error: First Name is required";
     errorLastNameMissingText="Error: Last Name is required";
     errorPostCodeMissingText="Error: Postal Code is required";
+    errorElementLocator="h3[data-test='error']";
 
 
     //helpers
