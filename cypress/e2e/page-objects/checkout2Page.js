@@ -4,7 +4,7 @@ class checkout2Page{
     checkoutCompletedURL="https://www.saucedemo.com/v1/checkout-complete.html";
     successMessageLocator=".complete-header";
     successMessageText="THANK YOU FOR YOUR ORDER";
-    orderCompletedURL="https://www.saucedemo.com/checkout-complete.html":
+    orderCompletedURL="https://www.saucedemo.com/checkout-complete.html";
     orderCompletedLocator="h2[data-test='complete-header']";
 
     clickFinishButton(){
