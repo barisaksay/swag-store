@@ -7,6 +7,8 @@ class checkout2Page{
     orderCompletedURL="https://www.saucedemo.com/checkout-complete.html";
     orderCompletedLocator="h2[data-test='complete-header']";
 
+    taxPercentage = 8;
+
     clickFinishButton(){
         cy.get(this.finishButton)
             .click()

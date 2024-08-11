@@ -31,7 +31,6 @@ describe('checkout step 1 tests', () => {
             
         })
     })
-    //re-run
     it("should not complete without firstname",()=>{
         InventoryPage.addToCart(0)
             .goToCart()
@@ -45,7 +44,6 @@ describe('checkout step 1 tests', () => {
         
     })
 
-      //re-run
     it("should not complete without lastname",()=>{
         InventoryPage.addToCart(0)
             .goToCart()
@@ -58,7 +56,6 @@ describe('checkout step 1 tests', () => {
             .should("have.text",Checkout1Page.errorLastNameMissingText)
         
     })
-         //re-run
      it("should not complete without postcode",()=>{
         InventoryPage.addToCart(0)
             .goToCart()
