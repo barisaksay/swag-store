@@ -1,6 +1,7 @@
 class checkout2Page{
     finishButton="a[class='btn_action cart_button']";
     cancelButton="[class='cart_cancel_link btn_secondary']";
+    itemPriceLocator=".inventory_item_price"
     checkoutCompletedURL="https://www.saucedemo.com/v1/checkout-complete.html";
     successMessageLocator=".complete-header";
     successMessageText="THANK YOU FOR YOUR ORDER";

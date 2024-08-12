@@ -28,7 +28,12 @@ class inventoryPage {
     .invoke('text')
     .as('itemName')
 
-    //clicks on add button
+    //reads and aliases item price for later use during verification. eg:verifying correct price is shown at different stages
+    cy.get(this.itemPrice)
+    .eq(nthItem - 1)
+    .invoke('text')
+    .as("itemPrice")
+
     cy.get(this.addToCartButton)
     .eq(nthItem - 1)
     .click()
