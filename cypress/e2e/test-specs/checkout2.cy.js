@@ -21,7 +21,7 @@ describe('checkout 2 page tests', () => {
         cy.login(validUsername,correctPassword);
     })
 
-    it("item price is shown correctly at checkout final",()=>{
+    it.only("item price is shown correctly at checkout final",()=>{
         InventoryPage.addToCart(0)
         InventoryPage.goToCart();
             CartPage.clickCheckoutButton()
@@ -79,25 +79,17 @@ describe('checkout 2 page tests', () => {
 
     })
 
-    it.only("test",()=>{
+    it("challenge: get every item name and store in aray", () => {
+        let arrayNames = [];
+        cy.get('.inventory_item').each((item) => {
+            // Find the .inventory_item_name within each .inventory_item
+            cy.wrap(item).find(".inventory_item_name").invoke('text').then((itemName) => {
+                 arrayNames.push(itemName);
+            });
+        }).then(() => {
+            // log the final array outside the loop
+            cy.log(arrayNames);
+        });
+    });
 
-        let myObj={
-            item,
-            price
-        }
-        cy.get('.inventory_list > :nth-child(1)').find(".inventory_item_name").invoke("text")          
-
-        //     cy.get(':nth-child(1) > .pricebar > .btn_primary').click()
-        //     cy.get('a.shopping_cart_link').click()
-
-        //     cy.get('.inventory_item_price').invoke('text').then((priceCart)=>{
-        //         priceCart= parseFloat(priceCart.replace("$",""))
-        //         cy.log(priceCart)
-
-        //         cy.wrap(priceCart).should("eq",price)
-        //         })
-
-        // })
-    
-    })
 })
