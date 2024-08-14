@@ -4,6 +4,8 @@ class LoginPage{
      usernameField = 'input[data-test="username"]';
      passwordField = 'input[data-test="password"]';
      loginButton = '#login-button';
+     burgerMenuButton='[class="bm-burger-button"]'
+     logoutButton='[id="logout_sidebar_link"]'
      loginURL="/v1/index.html"
      loginRedirectURL="/v1/inventory.html";
      errorLocator='[data-test="error"]';
@@ -33,11 +35,8 @@ class LoginPage{
 
     logoutUser(){
 
-        cy.get('div.bm-burger-button').find('button')
-        .click()
-        
-        cy.get('#logout_sidebar_link').contains("Logout")
-            .click()
+            cy.get(this.burgerMenuButton).click()
+            cy.get(this.logoutButton).click()
             return this;
     }
 }

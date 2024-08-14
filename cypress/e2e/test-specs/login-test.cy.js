@@ -22,7 +22,7 @@ describe('Login page tests',()=>{
         cy.get(InventoryPage.inventoryList).should('be.visible')
     })
 
-    it('login-logout successful',{tags:'@regression'},()=>{
+    it.only('login-logout successful',{tags:'@regression'},()=>{
         LoginPage.enterUsername(validUsername)
                   .enterPassword(correctPassword)
                   .submitLoginFormButton()
