@@ -39,10 +39,9 @@ describe("checkout 2 page tests", () => {
             cy.wrap(itemPrice2).should("eq", itemPrice1);
           });
       });
-    }
-  );
+    });
 
-  it.only("total amount to pay is calculated correctly",{ tags: "@regression" },()=>{
+  it("total amount to pay is calculated correctly",{ tags: "@regression" },()=>{
     InventoryPage.addToCart(0);
     cy.get("@itemPrice").then((itemPrice1) => {
       itemPrice1 = parseFloat(itemPrice1.replace("$", ""));
@@ -69,6 +68,20 @@ describe("checkout 2 page tests", () => {
 
         });
     });
+  })
+
+  it("user can complete order successfully",{ tags: "@regression" },()=>{
+   InventoryPage.addToCart(2)
+    .goToCart()
+    CartPage.clickCheckoutButton()
+    Checkout1Page.typeFirstName(firstname)
+    .typeLastName(lastname)
+    .typePostcode(postalcode)
+    .clickContinueButton()
+    Checkout2Page.clickFinishButton()
+    //cy.get(Checkout2Page.successMessageLocator).should("have.text", Checkout2Page.successMessageText)
+    cy.get(Checkout2Page.successMessageLocator).should("be.visible").and("have.text",Checkout2Page.successMessageText)
+
   })
 
   it("challenge: get every item name and store in aray", () => {

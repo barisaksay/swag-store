@@ -6,7 +6,7 @@ class checkout2Page{
     successMessageLocator=".complete-header";
     successMessageText="THANK YOU FOR YOUR ORDER";
     orderCompletedURL="https://www.saucedemo.com/checkout-complete.html";
-    orderCompletedLocator="h2[data-test='complete-header']";
+    orderCompletedLocator="h2[class='complete-header']";
 
     taxPercentage = 8;
 
