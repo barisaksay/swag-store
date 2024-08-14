@@ -2,6 +2,7 @@ class cartPage{
 
     //locators
     continueShoppingButton="a.btn_secondary";
+    cartItemName='.inventory_item_name'
     checkoutButton=".btn_action";
     inventoryPageURL="/v1/inventory.html";
     checkoutStepOneURL="/v1/checkout-step-one.html";

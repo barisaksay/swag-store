@@ -1,12 +1,11 @@
 class inventoryPage {
 
-    //locators
     inventoryList='.inventory_list'
     inventoryItem='.inventory_item';
     itemName ='.inventory_item_name';
     itemPrice='.inventory_item_price';
     itemPriceDetailPage=".inventory_details_price"
-    addToCartButton="button.btn_primary.btn_inventory";
+    addToCartButton="button.btn_primary";
     removeButton=".btn_secondary";
     backToInventoryButton=".inventory_details_back_button"
     goToCartButton="a.shopping_cart_link";
@@ -17,12 +16,8 @@ class inventoryPage {
     
 
     addToCart(nthItem){
+
     // stores the item name in the alias "itemName", it can be used in test separately
-
-        /*solution: below code selects the nth item from the item list,
-        reads its name via invoke('text') and aliases it, so it can be used outside
-        the POM method, ie in the test itself. For ex: see the --add to cart-- test.*/
-
     cy.get(this.itemName)
     .eq(nthItem - 1)
     .invoke('text')

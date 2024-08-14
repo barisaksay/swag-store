@@ -1,11 +1,13 @@
 import inventoryPage from "../page-objects/inventoryPage"
 import login from '../../fixtures/login-data.json';
+import cartPage from "../page-objects/cartPage";
 const {validUsername,correctPassword}=login
 
 
 describe("inventory page tests",()=>{
 
 let InventoryPage = new inventoryPage()
+let CartPage = new cartPage()
     beforeEach(()=>{
         cy.login(validUsername,correctPassword)
     })
@@ -17,12 +19,12 @@ let InventoryPage = new inventoryPage()
         .should('be.a', 'string')
         .then((productName)=>{
             InventoryPage.goToCart()
-            cy.contains('.inventory_item_name', productName)
+            cy.get(CartPage.cartItemName).should("have.text",productName)
 
         })
     })
 
-    it("should remove added item from cart",()=>{
+    it.only("should remove added item from cart",()=>{
         InventoryPage.addToCart(3);
         InventoryPage.removeFromCart(3)
     })
