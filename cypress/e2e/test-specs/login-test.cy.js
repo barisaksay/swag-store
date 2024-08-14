@@ -22,7 +22,7 @@ describe('Login page tests',()=>{
         cy.get(InventoryPage.inventoryList).should('be.visible')
     })
 
-    it.only('login-logout successful',{tags:'@regression'},()=>{
+    it('logout successful',{tags:'@regression'},()=>{
         LoginPage.enterUsername(validUsername)
                   .enterPassword(correctPassword)
                   .submitLoginFormButton()
@@ -33,40 +33,40 @@ describe('Login page tests',()=>{
 
     })
 
-    it('wrong credentials: wrong username,correct password',{tags:'@regression'},()=>{
+    it('wrong creds: wrong username,correct password',{tags:'@regression'},()=>{
         LoginPage.enterUsername(wrongUsername)
         .enterPassword(correctPassword)
         .submitLoginFormButton()
         
         cy.get(LoginPage.errorLocator)
             .should('be.visible')
-            .should('contain.text',LoginPage.errorText)
+            .and('contain.text',LoginPage.errorText)
         cy.url().should('eq',"https://www.saucedemo.com/v1/")
     })
 
-    it('wrong credentials: correct username,wrong password',()=>{
+    it('wrong creds: correct username,wrong password',()=>{
         LoginPage.enterUsername(validUsername)
         .enterPassword(wrongPassword)
         .submitLoginFormButton()
         
         cy.get(LoginPage.errorLocator)
             .should('be.visible')
-            .should('contain.text',LoginPage.errorText)
+            .and('contain.text',LoginPage.errorText)
         cy.url().should('eq',"https://www.saucedemo.com/v1/")
     })
 
-    it('empty username field',()=>{
+    it('missing creds:empty username field',()=>{
         LoginPage.enterPassword(correctPassword)
         .submitLoginFormButton()
             
         cy.get(LoginPage.errorLocator)
             .should('be.visible')
-            .should('contain.text',LoginPage.missingFieldText)
+            .and('contain.text',LoginPage.missingFieldText)
         cy.url().should('eq',"https://www.saucedemo.com/v1/")
 
     })
 
-    it('empty password field',()=>{
+    it('missing creds:empty password field',()=>{
         LoginPage.enterUsername(validUsername)
         .submitLoginFormButton()
         
@@ -78,15 +78,14 @@ describe('Login page tests',()=>{
 
     })
 
-    it('locked out user - unsuccessful login',()=>{
+    it('unsuccessful attempt:locked out user',()=>{
         LoginPage.enterUsername(lockedoutUser)
         .enterPassword(correctPassword)
         .submitLoginFormButton()
         
         cy.url().should('eq','https://www.saucedemo.com/v1/')
         cy.get(LoginPage.errorLocator)
-            .should('be.visible')
-            .should('contain.text',LoginPage.lockedOutErrorText)
+            .should('be.visible').and('contain.text',LoginPage.lockedOutErrorText)
     })
 
 })
